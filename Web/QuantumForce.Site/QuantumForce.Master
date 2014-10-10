@@ -6,6 +6,7 @@
 <head runat="server">
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
+         <h1>Budget Assistant</h1>
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -15,21 +16,30 @@
         
             <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
                 <Items>
-                    <asp:MenuItem Text="Dashboard" Value="Dashboard"></asp:MenuItem>
+                    <asp:MenuItem Text="Dashboard" Value="Dashboard" NavigateUrl="~/Dashboard.aspx"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
                     <asp:MenuItem Text="Budget" Value="Budget"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Reporting" Value="Reporting"></asp:MenuItem>
+                    <asp:MenuItem Text="Reports" Value="Reports" NavigateUrl="~/Reports.aspx"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
                     <asp:MenuItem Text="Tools" Value="Tools"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
                     <asp:MenuItem Text="Calendar" Value="Calendar"></asp:MenuItem>
+                    <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
+                    <asp:MenuItem Text="Saving Tips" Value="Saving Tips"></asp:MenuItem>
                 </Items>
             </asp:Menu>
         
         </asp:ContentPlaceHolder>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
         </asp:ContentPlaceHolder>
+           <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div style ="bottom:0px; position:absolute; text-align:center; width:98%;" >
+            <asp:ContentPlaceHolder runat="server" ID="footer" >
+                Copyright Budget Assistant | Site by Quantum Force
+            </asp:ContentPlaceHolder>
     </div>
     </form>
 </body>
