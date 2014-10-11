@@ -17,39 +17,5 @@
 </asp:Content>
 
 
-<asp:Content ID="Content4" runat="server" contentplaceholderid="head">
-         <h1>Budget Assistant</h1>
-    <style type="text/css">
-        .auto-style1 {
-            width: 738px;
-        }
-        .auto-style2 {
-            width: 104px;
-        }
-        .auto-style3 {
-            width: 93px;
-        }
-    </style>
-<style type="text/css">
-    .auto-style1 {
-        height: 26px;
-    }
-</style>
-         <style type="text/css">
-             .auto-style1 {
-                 width: 400px;
-             }
-             .auto-style2 {
-                 width: 295px;
-             }
-             .auto-style4 {
-                 width: 174px;
-             }
-             .auto-style5 {
-                 width: 109px;
-             }
-         </style>
-</asp:Content>
-
 
 

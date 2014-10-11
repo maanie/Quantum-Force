@@ -6,27 +6,66 @@
 <head runat="server">
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
-         <h1>Budget Assistant</h1>
+        
+       
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 175px;
+        }
+
+.wrapper 
+{
+    width: 100%;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -20px;  /*the bottom margin is the negative value of the footer's height*/
+}
+.push
+{
+    height: 20px;  /*'.push' must be the same height as 'footer'*/
+}
+.footer
+{ 
+    position: absolute;
+    height: 20px;
+    width: 99%;
+    margin: auto;
+    bottom: 0px;
+    text-align: center;
+}
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class =" wrapper">
+        <table cellspacing ="2" cellpadding ="2">
+            <tr>
+                <td class="auto-style1"><asp:Image runat="server" Height="124px" ImageUrl="~/Images/Quantum_Force Logo.jpg" Width="173px" ></asp:Image></td>
+                <td><h1>Budget Assistant</h1></td>
+            </tr> 
+         
+        </table>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
             <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
                 <Items>
-                    <asp:MenuItem Text="Dashboard" Value="Dashboard" NavigateUrl="~/Dashboard.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Dashboard (Shannon)" Value="Dashboard" NavigateUrl="~/Dashboard.aspx"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Budget" Value="Budget"></asp:MenuItem>
+                    <asp:MenuItem Text="Budget(Ruan)" Value="Budget"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Reports" Value="Reports" NavigateUrl="~/Reports.aspx"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/Transactions.aspx" Text="Transactions(Abdurahmaan)" Value="Transactions"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Tools" Value="Tools"></asp:MenuItem>
+                    <asp:MenuItem Text="Reports(Abdurahmaan &amp; Christiaan)" Value="Reports" NavigateUrl="~/Reports.aspx"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Calendar" Value="Calendar"></asp:MenuItem>
+                    <asp:MenuItem Text="Tools(Ruan)" Value="Tools"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Saving Tips" Value="Saving Tips"></asp:MenuItem>
+                    <asp:MenuItem Text="Calendar (Christiaan)" Value="Calendar"></asp:MenuItem>
+                    <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
+                    <asp:MenuItem Text="Saving Tips(Shannon)" Value="Saving Tips"></asp:MenuItem>
+                    <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
+                    <asp:MenuItem Text="About us" Value="About us"></asp:MenuItem>
                 </Items>
             </asp:Menu>
         
@@ -36,10 +75,8 @@
            <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
         </asp:ContentPlaceHolder>
     </div>
-    <div style ="bottom:0px; position:absolute; text-align:center; width:98%;" >
-            <asp:ContentPlaceHolder runat="server" ID="footer" >
-                Copyright Budget Assistant | Site by Quantum Force
-            </asp:ContentPlaceHolder>
+    <div class="footer">
+                <p>Copyright Budget Assistant | Site by Quantum Force</p>
     </div>
     </form>
 </body>
