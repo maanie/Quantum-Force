@@ -59,8 +59,6 @@
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
                     <asp:MenuItem Text="Reports(Abdurahmaan &amp; Christiaan)" Value="Reports" NavigateUrl="~/Reports.aspx"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Tools(Ruan)" Value="Tools"></asp:MenuItem>
-                    <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
                     <asp:MenuItem Text="Calendar (Christiaan)" Value="Calendar"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
                     <asp:MenuItem Text="Saving Tips(Shannon)" Value="Saving Tips"></asp:MenuItem>

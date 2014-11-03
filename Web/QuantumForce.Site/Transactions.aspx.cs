@@ -14,9 +14,10 @@ namespace QuantumForce.Site
         {
             if (!Page.IsPostBack)
             {
-                gvTransactions.DataSource = GetTableWithInitialData(); //get Initial data (Will be replaced by a select query
-                gvTransactions.DataBind();
+                this.gvTransactions.DataSource = GetTableWithInitialData(); //get Initial data (Will be replaced by a select query
+                this.gvTransactions.DataBind();
             }
+ 
 
         }
 
@@ -65,6 +66,26 @@ namespace QuantumForce.Site
 
             gvTransactions.DataSource = dt; // bind new datatable to grid
             gvTransactions.DataBind();
+        }
+
+        protected void gvTransactions_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void gvTransactions_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void gvTransactions_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+
+        }
+
+        protected void gvTransactions_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
         }
     }
 }
