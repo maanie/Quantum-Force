@@ -11,6 +11,7 @@ namespace QuantumForce.Site
     {
         protected void Application_Start(object sender, EventArgs e)
         {
+            System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
         }
     }
 }

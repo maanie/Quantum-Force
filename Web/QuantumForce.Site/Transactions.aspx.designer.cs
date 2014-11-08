@@ -13,15 +13,6 @@ namespace QuantumForce.Site {
     public partial class Transactions {
         
         /// <summary>
-        /// btnAddTransaction control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddTransaction;
-        
-        /// <summary>
         /// gvTransactions control.
         /// </summary>
         /// <remarks>
@@ -29,5 +20,14 @@ namespace QuantumForce.Site {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvTransactions;
+        
+        /// <summary>
+        /// lblmsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblmsg;
     }
 }

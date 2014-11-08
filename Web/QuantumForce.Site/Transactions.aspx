@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/QuantumForce.Master" AutoEventWireup="true" CodeBehind="Transactions.aspx.cs" Inherits="QuantumForce.Site.Transactions" %>
- 
+
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div style="height: 55px" class =" wrapper">
         <BR/>
@@ -10,74 +10,114 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-
+    <script type="text/javascript">
+        function deleteConfirm(pubid) {
+            var result = confirm('Do you want to delete Transaction ' + pubid + ' ?');
+            if (result) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+</script>
     <div class ="wrapper">
           <table width ="60%">
             <tr>
-               <td align="right" width ="60%"> <asp:Button ID="btnAddTransaction" runat="server" Text="Add Transaction" Width="122px" OnClick="btnAddTransaction_Click" style="text-align: right" /></td></tr>
+               <td align="right" width ="60%"> &nbsp;</td></tr>
         </table>
-      
-            <BR/><asp:GridView ID="gvTransactions" runat="server" AllowSorting="True" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" ShowFooter="True" Width="60%" EmptyDataText="- No Transactions available-" ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" OnRowCancelingEdit="gvTransactions_RowCancelingEdit" OnRowDeleting="gvTransactions_RowDeleting" OnRowEditing="gvTransactions_RowEditing" OnRowUpdating="gvTransactions_RowUpdating">
-            <AlternatingRowStyle BackColor="#DCDCDC" />
-            <EmptyDataTemplate>
-                <div class="auto-style2">
-                    <b>- No Transactions Available! -</b></div>
-            </EmptyDataTemplate>
-            <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-            <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-            <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
-            <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-            <SortedAscendingHeaderStyle BackColor="#0000A9" />
-            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-            <SortedDescendingHeaderStyle BackColor="#000065" />
-            <Columns>
-                <asp:TemplateField HeaderStyle-HorizontalAlign="Left" HeaderText="Category">
-                    <ItemTemplate>
-                        <asp:DropDownList ID="ddlCategory" runat="server" Width ="100px">
-                            <asp:ListItem>Shopping</asp:ListItem>
-                            <asp:ListItem>Transport</asp:ListItem>
-                            <asp:ListItem>Bills and Utilies</asp:ListItem>
-                            <asp:ListItem>Food</asp:ListItem>
-                            <asp:ListItem>Entertainment</asp:ListItem>
-                            <asp:ListItem>Home</asp:ListItem>
-                        </asp:DropDownList>
-                    </ItemTemplate>
+      <BR/>
+<asp:GridView ID="gvTransactions" DataKeyNames="ID" runat="server"
+        AutoGenerateColumns="False" ShowFooter="True" HeaderStyle-Font-Bold="true"
+        onrowcancelingedit="gvTransactions_RowCancelingEdit"
+        onrowdeleting="gvTransactions_RowDeleting"
+        onrowediting="gvTransactions_RowEditing"
+        onrowupdating="gvTransactions_RowUpdating"
+        onrowcommand="gvTransactions_RowCommand"
+        OnRowDataBound="gvTransactions_RowDataBound" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+<Columns>
+<asp:TemplateField HeaderText="Transaction ID" ItemStyle-HorizontalAlign ="Right">
+    <ItemTemplate>
+        <asp:Label ID="ID" runat="server"  width="40px" Text='<%#Eval("ID") %>'/>
+    </ItemTemplate>
+    <EditItemTemplate>
+        <asp:Label ID="lblID" runat="server" width="40px" Text='<%#Eval("ID") %>'/>
+    </EditItemTemplate>
+</asp:TemplateField>
+ <asp:TemplateField HeaderText="Category">
+     <ItemTemplate>
+         <asp:Label ID="lblCategory" runat="server" width="150px" Text ='<%#Eval("Category") %>'/>
+     </ItemTemplate>
+     <EditItemTemplate>
+         <asp:DropDownList ID="txtCategory"  Width="150px" runat="server"></asp:DropDownList>
+     </EditItemTemplate>
+     <FooterTemplate>
+        <asp:DropDownList ID="inCategory" width="150px" runat="server"/>
+        <!--<asp:RequiredFieldValidator ID="vCategory" runat="server" ControlToValidate="inCategory" Text="?" ValidationGroup="validaiton"/>-->
+    </FooterTemplate>
+ </asp:TemplateField>
+  <asp:TemplateField HeaderText="Description">
+       <ItemTemplate>
+         <asp:Label ID="lblDescription" runat="server" width="350px" Text='<%#Eval("Description") %>'/>
+     </ItemTemplate>
+     <EditItemTemplate>
+         <asp:TextBox ID="txtDescription" width="350px"   runat="server" Text='<%#Eval("Description") %>'/>
+     </EditItemTemplate>
+      <FooterTemplate>
+        <asp:TextBox ID="inDescription" width="350px" runat="server"/>
+        <asp:RequiredFieldValidator ID="vDescription" runat="server" ControlToValidate="inDescription" Text="?" ValidationGroup="validaiton"/>
+    </FooterTemplate>
+ </asp:TemplateField>
+   <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign ="Right">
+     <ItemTemplate>
+         <asp:Label ID="lblAmount" runat="server" width="100px" Text='<%#Eval("Amount") %>' ItemStyle-HorizontalAlign ="Right"/>
+     </ItemTemplate>
+     <EditItemTemplate>
+         <asp:TextBox ID="txtAmount" width="100px"  runat="server" Text='<%#Eval("Amount") %>'/>
+     </EditItemTemplate>
+       <FooterTemplate>
+        <asp:TextBox ID="inAmount" width="100px" runat="server"/>
+        <asp:RequiredFieldValidator ID="vAmount" runat="server" ControlToValidate="inAmount" Text="?" ValidationGroup="validaiton"/>
+    </FooterTemplate>
+ </asp:TemplateField>
+ <asp:TemplateField>
+    <EditItemTemplate>
+        <asp:Button ID="ButtonUpdate" runat="server" CommandName="Update"  Text="Update"  />
+        <asp:Button ID="ButtonCancel" runat="server" CommandName="Cancel"  Text="Cancel" />
+    </EditItemTemplate>
+    <ItemTemplate>
+        <asp:Button ID="ButtonEdit" runat="server" CommandName="Edit"  Text="Edit"  />
+        <asp:Button ID="ButtonDelete" runat="server" CommandName="Delete"  Text="Delete"  />
+    </ItemTemplate>
+    <FooterTemplate>
+        <asp:Button ID="ButtonAdd" runat="server" CommandName="AddNew"  Text="Add New Transaction" ValidationGroup="validaiton" />
+    </FooterTemplate>
+ </asp:TemplateField>
+ </Columns>
+    <EditRowStyle BackColor="#999999" />
+    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
 
-<HeaderStyle HorizontalAlign="Left" Width="80px"></HeaderStyle>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderStyle-HorizontalAlign="Left" HeaderText="Description">
-                    <ItemTemplate>
-                        <asp:TextBox ID="txtDescription" runat="server" ></asp:TextBox>
-                    </ItemTemplate>
-                    <ControlStyle Width="600px" />
-
-<HeaderStyle HorizontalAlign="Left" Width="600px"></HeaderStyle>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderStyle-HorizontalAlign="Left" HeaderText="Amount">
-                    <ItemTemplate>
-                        <asp:TextBox ID="txtAmount" runat="server" ></asp:TextBox>
-                    </ItemTemplate>
-
-<HeaderStyle HorizontalAlign="Left" Width="80px"></HeaderStyle>
-                </asp:TemplateField>
-                <asp:CommandField ShowEditButton="True" />
-                <asp:CommandField ShowDeleteButton="True" />
-         </Columns>
-
-        </asp:GridView><BR/>
+<HeaderStyle Font-Bold="True" BackColor="#5D7B9D" ForeColor="White"></HeaderStyle>
+    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+</asp:GridView>   
       
     </div>
+
+    <br /><br/>&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Label ID="lblmsg" runat="server"></asp:Label>
 </asp:Content>
 
 
 <asp:Content ID="Content5" runat="server" contentplaceholderid="head">
     <style type="text/css">
-        .auto-style2 {
-            text-align: center;
-        }
-
+        
         .wrapper 
 {
     width: 100%;
