@@ -42,8 +42,7 @@
     <div class =" wrapper">
         <table cellspacing ="2" cellpadding ="2">
             <tr>
-                <td class="auto-style1"><asp:Image runat="server" Height="124px" ImageUrl="~/Images/Quantum_Force Logo.jpg" Width="173px" ></asp:Image></td>
-                <td><h1>Budget Assistant</h1></td>
+                <td class="auto-style1"><asp:Image runat="server" Height="60px" ImageUrl="~/Images/Quantum_Force Logo.jpg" Width="175px" ></asp:Image></td>
             </tr> 
          
         </table>
@@ -53,7 +52,7 @@
                 <Items>
                     <asp:MenuItem Text="Dashboard (Shannon)" Value="Dashboard" NavigateUrl="~/Dashboard.aspx"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Budget(Ruan)" Value="Budget"></asp:MenuItem>
+                    <asp:MenuItem Text="Budget(Ruan)" NavigateUrl="~/Budget.aspx" Value="Budget"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
                     <asp:MenuItem NavigateUrl="~/Transactions.aspx" Text="Transactions(Abdurahmaan)" Value="Transactions"></asp:MenuItem>
                     <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
