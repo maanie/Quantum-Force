@@ -2,80 +2,74 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-        
-       
-    </asp:ContentPlaceHolder>
-    <style type="text/css">
-        .auto-style1 {
-            width: 175px;
-        }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Quantum Force</title>
 
-.wrapper 
-{
-    width: 100%;
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -20px;  /*the bottom margin is the negative value of the footer's height*/
-}
-.push
-{
-    height: 20px;  /*'.push' must be the same height as 'footer'*/
-}
-.footer
-{ 
-    position:fixed !important;
-    width:100%;
-    bottom:0;
-    text-align:center;
-    padding:0px 0px 12px;
-    background:#f0f0f0;
-    border-top:1px solid #666;
-}
+    <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" href="Content/bootstrap.min.css" type="text/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <style type="text/css">
+        .footer {
+            /*position: fixed !important;*/
+            width: 100%;
+            bottom: 0;
+            /*background: #f0f0f0;*/
+            /*text-align: center;
+            padding: 0px 0px 12px;
+            border-top: 1px solid #666;*/
+        }
     </style>
+
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div class =" wrapper">
-        <table cellspacing ="2" cellpadding ="2">
-            <tr>
-                <td class="auto-style1"><asp:Image runat="server" Height="60px" ImageUrl="~/Images/Quantum_Force Logo.jpg" Width="175px" ></asp:Image></td>
-            </tr> 
-         
-        </table>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-            <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
-                <Items>
-                    <asp:MenuItem Text="Dashboard (Shannon)" Value="Dashboard" NavigateUrl="~/Dashboard.aspx"></asp:MenuItem>
-                    <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Budget(Ruan)" NavigateUrl="~/Budget.aspx" Value="Budget"></asp:MenuItem>
-                    <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/Transactions.aspx" Text="Transactions(Abdurahmaan)" Value="Transactions"></asp:MenuItem>
-                    <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Reports(Abdurahmaan &amp; Christiaan)" Value="Reports" NavigateUrl="~/Reports.aspx"></asp:MenuItem>
-                    <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Calendar (Christiaan)" Value="Calendar"></asp:MenuItem>
-                    <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="Saving Tips(Shannon)" Value="Saving Tips"></asp:MenuItem>
-                    <asp:MenuItem Text="|" Value="|"></asp:MenuItem>
-                    <asp:MenuItem Text="About us" Value="About us"></asp:MenuItem>
-                </Items>
-            </asp:Menu>
-        
-        </asp:ContentPlaceHolder>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-        </asp:ContentPlaceHolder>
-           <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
-        </asp:ContentPlaceHolder>
-    </div>
-    <div class="footer">
-                <p>Copyright Budget Assistant | Site by Quantum Force</p>
-    </div>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">
+                        <span style="color: #186fc3; font-size: x-large">Q</span>uantum  <span style="color: #186fc3; font-size: x-large">F</span>orce
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Dashboard</a></li>
+                        <li><a runat="server" href="Budget.aspx">Budget</a></li>
+                        <li><a runat="server" href="Transactions.aspx">Transactions</a></li>
+                        <li><a runat="server" href="Reports.aspx">Reports</a></li>
+                        <li><a runat="server" href="#">Calender</a></li>
+                        <li><a runat="server" href="#">Saving Tips</a></li>
+                        <li><a runat="server" href="About.aspx">About us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <br />
+            <br />
+            <br />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer class="footer">
+                <p>&copy; <%: DateTime.Now.Year %> - Copyright Budget Assistant | Site by Quantum Force</p>
+            </footer>
+        </div>
     </form>
 </body>
 </html>
