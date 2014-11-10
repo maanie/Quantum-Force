@@ -110,8 +110,9 @@
       
     </div>
 
-    <br /><br/>&nbsp;&nbsp;&nbsp;&nbsp;
+    <br/> <br/>&nbsp;&nbsp;&nbsp;&nbsp;
 <asp:Label ID="lblmsg" runat="server"></asp:Label>
+    <br/> <br/><br/> <br/>
 </asp:Content>
 
 

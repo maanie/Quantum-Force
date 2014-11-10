@@ -60,6 +60,7 @@
   <ItemGroup>
     <Content Include="Budget.aspx" />
     <Content Include="Images\Quantum_Force Logo.jpg" />
+    <Content Include="QuantumForce.accdb" />
     <Content Include="QuantumForce.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
