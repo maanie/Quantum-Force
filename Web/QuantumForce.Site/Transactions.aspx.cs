@@ -31,7 +31,7 @@ namespace QuantumForce.Site
             using (Conn)
             {
                 Conn.Open();
-                OleDbCommand cmd = new OleDbCommand("SELECT ID, refCategory, tblCategory.CategoryName as Category, Description, Amount FROM tblTransaction LEFT JOIN tblCategory ON tblTransaction.refCategory = tblCategory.CategoryID ", Conn);
+                OleDbCommand cmd = new OleDbCommand("SELECT ID,TransactionDate, refCategory, tblCategory.CategoryName as Category, Description, Amount FROM tblTransaction LEFT JOIN tblCategory ON tblTransaction.refCategory = tblCategory.CategoryID ", Conn);
                 OleDbDataAdapter oDA = new OleDbDataAdapter(cmd);
                 dt = new DataTable();
                 oDA.Fill(dt);
@@ -103,16 +103,17 @@ namespace QuantumForce.Site
 
         protected void gvTransactions_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+        
             if (e.CommandName.Equals("AddNew"))
             {
                 DropDownList inCategory = (DropDownList)gvTransactions.FooterRow.FindControl("inCategory");
                 TextBox inDescription = (TextBox)gvTransactions.FooterRow.FindControl("inDescription");
                 TextBox inAmount = (TextBox)gvTransactions.FooterRow.FindControl("inAmount");
-            
+               
                 Conn.Open();
                 OleDbCommand cmd = new OleDbCommand(
-                        "insert into tblTransaction(refCategory, Description, Amount) values(" + (inCategory.SelectedValue == "" ? "-1" : inCategory.SelectedValue) + ",'" +
-                        inDescription.Text + "'," + (inAmount.Text == "" ? "0": inAmount.Text) + ")", Conn);
+                        "insert into tblTransaction(refCategory, Description, Amount, TransactionDate) values(" + (inCategory.SelectedValue == "" ? "-1" : inCategory.SelectedValue) + ",'" +
+                        inDescription.Text + "'," + (inAmount.Text == "" ? "0" : inAmount.Text) + ",Date())", Conn);
                 int result = cmd.ExecuteNonQuery();
                 Conn.Close();
                 if (result == 1)

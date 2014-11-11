@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div style="height: 55px" class=" wrapper">
-        <br />
         <h3>
             <label>Amount Available:</label></h3>
         <h3>
@@ -30,23 +29,33 @@
             </tr>
         </table>
         <br />
-        <asp:GridView ID="gvTransactions" DataKeyNames="ID" runat="server"
-            AutoGenerateColumns="False" ShowFooter="True" HeaderStyle-Font-Bold="true"
+        <asp:GridView ID="gvTransactions" DataKeyNames="ID" runat="server" CssClass="table table-hover table-bordered table-responsive table-striped"
+            AutoGenerateColumns="False" ShowFooter="True" 
             OnRowCancelingEdit="gvTransactions_RowCancelingEdit"
             OnRowDeleting="gvTransactions_RowDeleting"
             OnRowEditing="gvTransactions_RowEditing"
             OnRowUpdating="gvTransactions_RowUpdating"
             OnRowCommand="gvTransactions_RowCommand"
-            OnRowDataBound="gvTransactions_RowDataBound" CellPadding="4" ForeColor="#333333" GridLines="None">
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            OnRowDataBound="gvTransactions_RowDataBound">
             <Columns>
-                <asp:TemplateField HeaderText="Transaction ID" ItemStyle-HorizontalAlign="Right">
+                <asp:TemplateField HeaderText="Transaction Number" ItemStyle-HorizontalAlign="Right">
                     <ItemTemplate>
-                        <asp:Label ID="ID" runat="server" Width="40px" Text='<%#Eval("ID") %>' />
+                        <asp:Label ID="ID" runat="server" Width="100px" Text='<%#Eval("ID") %>' />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:Label ID="lblID" runat="server" Width="40px" Text='<%#Eval("ID") %>' />
+                        <asp:Label ID="lblID" runat="server" Width="100px" Text='<%#Eval("ID") %>' />
                     </EditItemTemplate>
+
+                    <HeaderStyle Width="180px" />
+
+                <ItemStyle HorizontalAlign="Right"></ItemStyle>
+                </asp:TemplateField>
+                  <asp:TemplateField HeaderText="Date" ItemStyle-HorizontalAlign="Right">
+                    <ItemTemplate>
+                        <asp:Label ID="lblDate" runat="server" Width="100px" Text='<%#Eval("TransactionDate") %>' ItemStyle-HorizontalAlign="Right" />
+                    </ItemTemplate>
+                    
+                <ItemStyle HorizontalAlign="Right"></ItemStyle>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Category">
                     <ItemTemplate>
@@ -65,11 +74,11 @@
                         <asp:Label ID="lblDescription" runat="server" Width="350px" Text='<%#Eval("Description") %>' />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtDescription" Width="350px" runat="server" Text='<%#Eval("Description") %>' />
+                        <asp:TextBox ID="txtDescription" Width="370px" runat="server" Text='<%#Eval("Description") %>' />
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:TextBox ID="inDescription" Width="350px" runat="server" />
-                        <asp:RequiredFieldValidator ID="vDescription" runat="server" ControlToValidate="inDescription" Text="?" ValidationGroup="validaiton" />
+                        <asp:TextBox ID="inDescription" Width="350px" runat="server" CausesValidation ="true" ValidationGroup="validaiton" />
+                        <asp:RequiredFieldValidator ID="vDescription" runat="server" ControlToValidate="inDescription" Text="?" ValidationGroup="validaiton"/>
                     </FooterTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign="Right">
@@ -77,12 +86,16 @@
                         <asp:Label ID="lblAmount" runat="server" Width="100px" Text='<%#Eval("Amount") %>' ItemStyle-HorizontalAlign="Right" />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtAmount" Width="100px" runat="server" Text='<%#Eval("Amount") %>' />
+                        <asp:TextBox ID="txtAmount" Width="120px" runat="server" Text='<%#Eval("Amount") %>' />
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtAmount" ValidationExpression="(^([0-9]*\d*\d{1}?\d*)$)" runat="server" ErrorMessage="RegularExpressionValidator"></asp:RegularExpressionValidator>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:TextBox ID="inAmount" Width="100px" runat="server" />
+                        <asp:TextBox ID="inAmount" Width="100px" runat="server" CausesValidation ="true" />
                         <asp:RequiredFieldValidator ID="vAmount" runat="server" ControlToValidate="inAmount" Text="?" ValidationGroup="validaiton" />
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1"  ControlToValidate="inAmount" ValidationExpression="(^([0-9]*\d*\d{1}?\d*)$)" runat="server" ErrorMessage="RegularExpressionValidator"></asp:RegularExpressionValidator>
                     </FooterTemplate>
+
+<ItemStyle HorizontalAlign="Right"></ItemStyle>
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
@@ -96,27 +109,20 @@
                     <FooterTemplate>
                         <asp:Button ID="ButtonAdd" runat="server" CommandName="AddNew" Text="Add New Transaction" ValidationGroup="validaiton" />
                     </FooterTemplate>
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:TemplateField>
             </Columns>
-            <EditRowStyle BackColor="#999999" />
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
 
-            <HeaderStyle Font-Bold="True" BackColor="#5D7B9D" ForeColor="White"></HeaderStyle>
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+<HeaderStyle Font-Bold="True"></HeaderStyle>
         </asp:GridView>
 
     </div>
 
+    <asp:Label ID="lblmsg" runat="server"></asp:Label>
+
     <br />
     <br />
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Label ID="lblmsg" runat="server"></asp:Label>
     <br />
     <br />
     <br />
