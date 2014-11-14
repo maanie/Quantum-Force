@@ -65,7 +65,7 @@
                         <asp:DropDownList ID="txtCategory" Width="150px" runat="server"></asp:DropDownList>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:DropDownList ID="inCategory" Width="150px" runat="server" />
+                        <asp:DropDownList ID="inCategory" Width="150px" runat="server"  />
                         <!--<asp:RequiredFieldValidator ID="vCategory" runat="server" ControlToValidate="inCategory" Text="?" ValidationGroup="validaiton"/>-->
                     </FooterTemplate>
                 </asp:TemplateField>

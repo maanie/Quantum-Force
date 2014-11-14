@@ -31,7 +31,7 @@ namespace QuantumForce.Site
             using (Conn)
             {
                 Conn.Open();
-                OleDbCommand cmd = new OleDbCommand("SELECT ID,TransactionDate, refCategory, tblCategory.CategoryName as Category, Description, Amount FROM tblTransaction LEFT JOIN tblCategory ON tblTransaction.refCategory = tblCategory.CategoryID ", Conn);
+                OleDbCommand cmd = new OleDbCommand("SELECT ID,Format(TransactionDate, 'yyyy/mm/dd') as TransactionDate, refCategory, tblCategory.CategoryName as Category, Description, Amount FROM tblTransaction LEFT JOIN tblCategory ON tblTransaction.refCategory = tblCategory.CategoryID ", Conn);
                 OleDbDataAdapter oDA = new OleDbDataAdapter(cmd);
                 dt = new DataTable();
                 oDA.Fill(dt);
@@ -113,7 +113,7 @@ namespace QuantumForce.Site
                 Conn.Open();
                 OleDbCommand cmd = new OleDbCommand(
                         "insert into tblTransaction(refCategory, Description, Amount, TransactionDate) values(" + (inCategory.SelectedValue == "" ? "-1" : inCategory.SelectedValue) + ",'" +
-                        inDescription.Text + "'," + (inAmount.Text == "" ? "0" : inAmount.Text) + ",Date())", Conn);
+                        inDescription.Text + "'," + (inAmount.Text == "" ? "0" : inAmount.Text) + ", Date())", Conn);
                 int result = cmd.ExecuteNonQuery();
                 Conn.Close();
                 if (result == 1)
@@ -136,27 +136,37 @@ namespace QuantumForce.Site
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
-                {
-                    DropDownList ddlList = (DropDownList)e.Row.FindControl("txtCategory");
+
+               if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+               {
+                   DropDownList ddlList = (DropDownList)e.Row.FindControl("txtCategory");
                     // bind DropDown manually
                     ddlList.DataSource = getCategories();
                     ddlList.DataTextField = "CategoryName";
-                    ddlList.DataValueField = "CategoryID";
+                    ddlList.DataValueField = getCategories().Columns["CategoryID"].ColumnName.ToString();
                     ddlList.DataBind();
                     ddlList.Items.Insert(0, new ListItem("Select", "-1"));
 
-                  
-                }
+                    //DataRowView dr = e.Row.DataItem as DataRowView;
+                    ////ddList.SelectedItem.Text = dr["YourCOLName"].ToString();
+                    //ddlList.SelectedValue = dr["CategoryID"].ToString();
+
+               }
+            
             }
 
-            /*DropDownList ddlList2 = (DropDownList)e.Row.FindControl("inCategory");
-            // bind DropDown manually
-            ddlList2.DataSource = getCategories();
-            ddlList2.DataTextField = "CategoryName";
-            ddlList2.DataValueField = "CategoryID";
-            ddlList2.DataBind();
-            ddlList2.Items.Insert(0, new ListItem("Select", "-1"));*/
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                DropDownList ddlCategories = (DropDownList)e.Row.FindControl("inCategory");
+                // bind DropDown manually
+                ddlCategories.DataSource = getCategories();
+                ddlCategories.DataTextField = "CategoryName";
+                ddlCategories.DataValueField = "CategoryID";
+                ddlCategories.DataBind();
+                ddlCategories.Items.Insert(0, new ListItem("Select", "-1"));
+            }
+
+          
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
