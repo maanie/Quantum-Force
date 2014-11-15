@@ -121,26 +121,54 @@ namespace QuantumForce.Site
                 DropDownList inCategory = (DropDownList)gvTransactions.FooterRow.FindControl("inCategory");
                 TextBox inDescription = (TextBox)gvTransactions.FooterRow.FindControl("inDescription");
                 TextBox inAmount = (TextBox)gvTransactions.FooterRow.FindControl("inAmount");
-               
+
                 Conn.Open();
-                OleDbCommand cmd = new OleDbCommand(
-                        "insert into tblTransaction(refCategory, Description, Amount, TransactionDate) values(" + (inCategory.SelectedValue == "" ? "-1" : inCategory.SelectedValue) + ",'" +
-                        inDescription.Text + "'," + (inAmount.Text == "" ? "0" : inAmount.Text) + ", Date())", Conn);
-                int result = cmd.ExecuteNonQuery();
+                //Get the total amount for this category in the transactions table
+                OleDbCommand cmd1 = new OleDbCommand(
+                        "Select SUM(Amount) AS TotalAmount FROM tblTransaction WHERE refCategory = " + inCategory.SelectedValue + "", Conn);
+                double result1 = (double)cmd1.ExecuteScalar();
                 Conn.Close();
-                if (result == 1)
-                {
-                    loadTransactions();
-                    lblmsg.BackColor = Color.Green;
-                    lblmsg.ForeColor = Color.White;
-                    lblmsg.Text = "Transaction Added successfully......    ";
-                }
-                else
+
+
+                //Add this amount to the total amount for this category
+                double totalAmount = Convert.ToDouble(inAmount.Text) + result1;
+
+                //Get the budget amount from the budget table for this category
+                double budgetAmount = 5000.00;
+
+                //Check if the  total amount from the transactions table + this amount is more than
+                //the budget amount. If it is then display a message saying budget amount exceeded
+                //, you cannot add more transactions for this category
+                if (totalAmount > budgetAmount)
                 {
                     lblmsg.BackColor = Color.Red;
                     lblmsg.ForeColor = Color.White;
-                    lblmsg.Text = " Error while adding row.....";
+                    lblmsg.Text = "You have exceeded you budgeted amount for this Category, please adjust your budget for this category!";
                 }
+                else
+                {
+                    Conn.Open();
+                    OleDbCommand cmd = new OleDbCommand(
+                            "insert into tblTransaction(refCategory, Description, Amount, TransactionDate) values(" + (inCategory.SelectedValue == "" ? "-1" : inCategory.SelectedValue) + ",'" +
+                            inDescription.Text + "'," + (inAmount.Text == "" ? "0" : inAmount.Text) + ", Date())", Conn);
+                    int result = cmd.ExecuteNonQuery();
+                    Conn.Close();
+                    if (result == 1)
+                    {
+                        loadTransactions();
+                        lblmsg.BackColor = Color.Green;
+                        lblmsg.ForeColor = Color.White;
+                        lblmsg.Text = "Transaction Added successfully......    ";
+                    }
+                    else
+                    {
+                        lblmsg.BackColor = Color.Red;
+                        lblmsg.ForeColor = Color.White;
+                        lblmsg.Text = " Error while adding row.....";
+                    }
+
+                }                     
+      
             }
         }
 
