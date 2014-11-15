@@ -3,9 +3,11 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div style="height: 55px" class=" wrapper">
         <h3>
-            <label> Monthly Income (After deductions): </label><asp:Label ID="lblMonthlyIncome" runat="server" Width="100px" ></asp:Label></h3>
+            <label>Monthly Income (After deductions): </label>
+            <asp:Label ID="lblMonthlyIncome" runat="server" Width="100px"></asp:Label></h3>
         <h3>
-            <label>Amount Remaining: </label><asp:Label ID="lblAmountRemaining" runat="server" Width="100px" ></asp:Label><br />
+            <label>Amount Remaining: </label>
+            <asp:Label ID="lblAmountRemaining" runat="server" Width="100px"></asp:Label><br />
             <br />
         </h3>
     </div>
@@ -30,7 +32,7 @@
         </table>
         <br />
         <asp:GridView ID="gvTransactions" DataKeyNames="ID" runat="server" CssClass="table table-hover table-bordered table-responsive table-striped"
-            AutoGenerateColumns="False" ShowFooter="True" 
+            AutoGenerateColumns="False" ShowFooter="True"
             OnRowCancelingEdit="gvTransactions_RowCancelingEdit"
             OnRowDeleting="gvTransactions_RowDeleting"
             OnRowEditing="gvTransactions_RowEditing"
@@ -48,14 +50,14 @@
 
                     <HeaderStyle Width="180px" />
 
-                <ItemStyle HorizontalAlign="Right"></ItemStyle>
+                    <ItemStyle HorizontalAlign="Right"></ItemStyle>
                 </asp:TemplateField>
-                  <asp:TemplateField HeaderText="Date" ItemStyle-HorizontalAlign="Right">
+                <asp:TemplateField HeaderText="Date" ItemStyle-HorizontalAlign="Right">
                     <ItemTemplate>
                         <asp:Label ID="lblDate" runat="server" Width="100px" Text='<%#Eval("TransactionDate") %>' ItemStyle-HorizontalAlign="Right" />
                     </ItemTemplate>
-                    
-                <ItemStyle HorizontalAlign="Right"></ItemStyle>
+
+                    <ItemStyle HorizontalAlign="Right"></ItemStyle>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Category">
                     <ItemTemplate>
@@ -63,14 +65,14 @@
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:DropDownList ID="txtCategory" Width="150px" runat="server"></asp:DropDownList>
-                         <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtCategory"
-                              ErrorMessage="Please select a Category!" ValidationGroup ="vGroupEdit" InitialValue="-1"></asp:RequiredFieldValidator>
-                    
+                        <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtCategory"
+                            ErrorMessage="Please select a Category!" ValidationGroup="vGroupEdit" InitialValue="-1"></asp:RequiredFieldValidator>
+
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:DropDownList ID="inCategory" Width="150px" runat="server"  />
-                            <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="inCategory"
-                              ErrorMessage="Please select a Category!" ValidationGroup ="vGroupIn" InitialValue="-1"></asp:RequiredFieldValidator>
+                        <asp:DropDownList ID="inCategory" Width="150px" runat="server" />
+                        <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="inCategory"
+                            ErrorMessage="Please select a Category!" ValidationGroup="vGroupIn" InitialValue="-1"></asp:RequiredFieldValidator>
                     </FooterTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Description">
@@ -79,11 +81,11 @@
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:TextBox ID="txtDescription" Width="370px" runat="server" Text='<%#Eval("Description") %>' />
-                        <asp:RequiredFieldValidator ID="rfvDescriptionEdit" ControlToValidate ="txtDescription" runat="server" ErrorMessage="Please enter a description!" ValidationGroup ="vGroupEdit"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvDescriptionEdit" ControlToValidate="txtDescription" runat="server" ErrorMessage="Please enter a description!" ValidationGroup="vGroupEdit"></asp:RequiredFieldValidator>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:TextBox ID="inDescription" Width="350px" runat="server" CausesValidation ="true" ValidationGroup="validaiton" />
-                         <asp:RequiredFieldValidator ID="rfvDescriptionInsert" ControlToValidate ="inDescription" runat="server" ErrorMessage="Please enter a description!" ValidationGroup ="vGroupIn"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="inDescription" Width="350px" runat="server" CausesValidation="true" ValidationGroup="validaiton" />
+                        <asp:RequiredFieldValidator ID="rfvDescriptionInsert" ControlToValidate="inDescription" runat="server" ErrorMessage="Please enter a description!" ValidationGroup="vGroupIn"></asp:RequiredFieldValidator>
                     </FooterTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign="Right">
@@ -92,20 +94,20 @@
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:TextBox ID="txtAmount" Width="120px" runat="server" Text='<%#Eval("Amount") %>' />
-                        <asp:RequiredFieldValidator ID="rfvAmountEdit" ControlToValidate ="txtAmount" runat="server" ErrorMessage="Please enter an amount!" ValidationGroup ="vGroupEdit"></asp:RequiredFieldValidator>     
-                        <asp:RegularExpressionValidator ID="revAmountEdit" runat="server"  ControlToValidate ="txtAmount" ErrorMessage="Please enter a number!" ValidationExpression="^[0-9]*$"  ValidationGroup ="vGroupEdit"></asp:RegularExpressionValidator>
+                        <asp:RequiredFieldValidator ID="rfvAmountEdit" ControlToValidate="txtAmount" runat="server" ErrorMessage="Please enter an amount!" ValidationGroup="vGroupEdit"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revAmountEdit" runat="server" ControlToValidate="txtAmount" ErrorMessage="Please enter a number!" ValidationExpression="^[0-9]*$" ValidationGroup="vGroupEdit"></asp:RegularExpressionValidator>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:TextBox ID="inAmount" Width="100px" runat="server" CausesValidation ="true" />
-                        <asp:RequiredFieldValidator ID="rfvAmountInsert" ControlToValidate ="inAmount" runat="server" ErrorMessage="Please enter an amount!" ValidationGroup ="vGroupIn"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revAmountIn" runat="server"  ControlToValidate ="inAmount" ErrorMessage="Please enter a number!" ValidationExpression="^[0-9]*$"  ValidationGroup ="vGroupIn"></asp:RegularExpressionValidator>
+                        <asp:TextBox ID="inAmount" Width="100px" runat="server" CausesValidation="true" />
+                        <asp:RequiredFieldValidator ID="rfvAmountInsert" ControlToValidate="inAmount" runat="server" ErrorMessage="Please enter an amount!" ValidationGroup="vGroupIn"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revAmountIn" runat="server" ControlToValidate="inAmount" ErrorMessage="Please enter a number!" ValidationExpression="^[0-9]*$" ValidationGroup="vGroupIn"></asp:RegularExpressionValidator>
                     </FooterTemplate>
 
-<ItemStyle HorizontalAlign="Right"></ItemStyle>
+                    <ItemStyle HorizontalAlign="Right"></ItemStyle>
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:Button ID="ButtonUpdate" runat="server" CommandName="Update" Text="Update" ValidationGroup ="vGroupEdit" />
+                        <asp:Button ID="ButtonUpdate" runat="server" CommandName="Update" Text="Update" ValidationGroup="vGroupEdit" />
                         <asp:Button ID="ButtonCancel" runat="server" CommandName="Cancel" Text="Cancel" />
                     </EditItemTemplate>
                     <ItemTemplate>
@@ -113,13 +115,13 @@
                         <asp:Button ID="ButtonDelete" runat="server" CommandName="Delete" Text="Delete" />
                     </ItemTemplate>
                     <FooterTemplate>
-                        <asp:Button ID="ButtonAdd" runat="server" CommandName="AddNew" Text="Add New Transaction" ValidationGroup ="vGroupIn"/>
+                        <asp:Button ID="ButtonAdd" runat="server" CommandName="AddNew" Text="Add New Transaction" ValidationGroup="vGroupIn" />
                     </FooterTemplate>
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:TemplateField>
             </Columns>
 
-<HeaderStyle Font-Bold="True"></HeaderStyle>
+            <HeaderStyle Font-Bold="True"></HeaderStyle>
         </asp:GridView>
 
     </div>

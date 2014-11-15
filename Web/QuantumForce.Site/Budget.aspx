@@ -411,6 +411,15 @@
                     var remainder = income - totalExpense;
 
                     $("#remainder").prop("value", remainder);
+
+                    if (remainder > 0) {
+                        // Green
+                        $("#remainder").css('background-color', '#5ED866');
+                    }
+                    else {
+                        // Red
+                        $("#remainder").css('background-color', '#FF8888');
+                    }
                 }
             }
         }

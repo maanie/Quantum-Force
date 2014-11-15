@@ -22,11 +22,15 @@ namespace QuantumForce.Site
 
             string sFilePath = Server.MapPath("QuantumForce.accdb");
             Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + sFilePath + ";Persist Security Info=False;");
-            
-            if (!IsPostBack)
-            {
-                loadTransactions();
-            }
+
+                if (!IsPostBack)
+                {
+                    if (!User.Identity.IsAuthenticated)
+                    {
+                        Response.Redirect("Dashboard.aspx");
+                    }
+                    loadTransactions();
+                }
         }
 
         protected void loadTransactions()
@@ -115,7 +119,7 @@ namespace QuantumForce.Site
 
         protected void gvTransactions_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-        
+
             if (e.CommandName.Equals("AddNew"))
             {
                 DropDownList inCategory = (DropDownList)gvTransactions.FooterRow.FindControl("inCategory");
@@ -167,8 +171,8 @@ namespace QuantumForce.Site
                         lblmsg.Text = " Error while adding row.....";
                     }
 
-                }                     
-      
+                }
+
             }
         }
 
@@ -177,9 +181,9 @@ namespace QuantumForce.Site
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-               if ((e.Row.RowState & DataControlRowState.Edit) > 0)
-               {
-                   DropDownList ddlList = (DropDownList)e.Row.FindControl("txtCategory");
+                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+                {
+                    DropDownList ddlList = (DropDownList)e.Row.FindControl("txtCategory");
                     // bind DropDown manually
                     ddlList.DataSource = getCategories();
                     ddlList.DataTextField = "CategoryName";
@@ -191,8 +195,8 @@ namespace QuantumForce.Site
                     ////ddList.SelectedItem.Text = dr["YourCOLName"].ToString();
                     //ddlList.SelectedValue = dr["CategoryID"].ToString();
 
-               }
-            
+                }
+
             }
 
             if (e.Row.RowType == DataControlRowType.Footer)
@@ -206,7 +210,7 @@ namespace QuantumForce.Site
                 ddlCategories.Items.Insert(0, new ListItem("Select", "-1"));
             }
 
-          
+
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -217,12 +221,12 @@ namespace QuantumForce.Site
                     lnkbtnresult.Attributes.Add("onclick", "javascript:return deleteConfirm('" + id + "')");
                 }
             }
-         
+
         }
 
         protected DataTable getCategories()
         {
-             string sFilePath = Server.MapPath("QuantumForce.accdb");
+            string sFilePath = Server.MapPath("QuantumForce.accdb");
 
             OleDbConnection Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + sFilePath + ";Persist Security Info=False;");
             dt = new DataTable();
@@ -231,7 +235,7 @@ namespace QuantumForce.Site
                 Conn.Open();
                 OleDbCommand cmd = new OleDbCommand("SELECT CategoryID, CategoryName FROM tblCategory Order by CategoryName", Conn);
                 OleDbDataAdapter oDA = new OleDbDataAdapter(cmd);
-                
+
                 oDA.Fill(dt);
             }
             return dt;
