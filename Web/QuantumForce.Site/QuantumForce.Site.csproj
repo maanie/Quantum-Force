@@ -66,6 +66,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\CEO.jpg" />
     <Content Include="Images\Financial Director.jpg" />
+    <Content Include="Images\savingTips.jpg" />
     <Content Include="Images\IT Director.jpg" />
     <Content Include="Images\Marketing Director.jpg" />
     <Content Include="Images\Project Director.jpg" />
@@ -80,6 +81,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="SavingTips.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -132,6 +134,13 @@
     </Compile>
     <Compile Include="Reports.aspx.designer.cs">
       <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SavingTips.aspx.cs">
+      <DependentUpon>SavingTips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SavingTips.aspx.designer.cs">
+      <DependentUpon>SavingTips.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transactions.aspx.cs">
       <DependentUpon>Transactions.aspx</DependentUpon>
