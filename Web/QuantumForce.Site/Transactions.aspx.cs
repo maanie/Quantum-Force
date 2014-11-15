@@ -16,6 +16,9 @@ namespace QuantumForce.Site
         OleDbConnection Conn;
         protected void Page_Load(object sender, EventArgs e)
         {
+            // set the monthly income + the amount remaining (sync/get from ruaan's budget table)
+            lblAmountRemaining.Text = "R500";
+            lblMonthlyIncome.Text = "R5000";
 
             string sFilePath = Server.MapPath("QuantumForce.accdb");
             Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + sFilePath + ";Persist Security Info=False;");
@@ -49,6 +52,8 @@ namespace QuantumForce.Site
                     gvTransactions.DataSource = dt;
                     gvTransactions.DataBind();
                     int columncount = gvTransactions.Rows[0].Cells.Count;
+                    lblmsg.BackColor = Color.Red;
+                    lblmsg.ForeColor = Color.White;
                     lblmsg.Text = " No data found !!!";
                 }
             }
@@ -57,17 +62,21 @@ namespace QuantumForce.Site
         protected void gvTransactions_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string id = gvTransactions.DataKeys[e.RowIndex].Values["ID"].ToString();
-            Conn.Open();
-            OleDbCommand cmd = new OleDbCommand("DELETE from tblTransaction where ID=" + id, Conn);
-            int result = cmd.ExecuteNonQuery();
-            Conn.Close();
-            if (result == 1)
+
+            if (id != "")
             {
-                loadTransactions();
-                //Add delete msg later
-                lblmsg.BackColor = Color.Red;
-                lblmsg.ForeColor = Color.White;
-                lblmsg.Text = "Transaction " + id + "      Deleted successfully.......    ";
+                Conn.Open();
+                OleDbCommand cmd = new OleDbCommand("DELETE from tblTransaction where ID=" + id, Conn);
+                int result = cmd.ExecuteNonQuery();
+                Conn.Close();
+                if (result == 1)
+                {
+                    loadTransactions();
+                    //Add delete msg later
+                    lblmsg.BackColor = Color.Red;
+                    lblmsg.ForeColor = Color.White;
+                    lblmsg.Text = "Transaction " + id + "      Deleted successfully.......    ";
+                }
             }
         }
 
@@ -90,15 +99,18 @@ namespace QuantumForce.Site
             TextBox Description = (TextBox)gvTransactions.Rows[e.RowIndex].FindControl("txtDescription");
             TextBox Amount = (TextBox)gvTransactions.Rows[e.RowIndex].FindControl("txtAmount");
 
-            Conn.Open();
-            OleDbCommand cmd = new OleDbCommand("update tblTransaction set refCategory= " + txtCategory.SelectedValue + ", Description='" + Description.Text + "', Amount=" + Amount.Text + " where ID=" + id, Conn);
-            cmd.ExecuteNonQuery();
-            Conn.Close();
-            lblmsg.BackColor = Color.Blue;
-            lblmsg.ForeColor = Color.White;
-            lblmsg.Text = "Transaction " + id + "        Updated successfully........    ";
-            gvTransactions.EditIndex = -1;
-            loadTransactions();
+            if (id != null)
+            {
+                Conn.Open();
+                OleDbCommand cmd = new OleDbCommand("update tblTransaction set refCategory= " + txtCategory.SelectedValue + ", Description='" + Description.Text + "', Amount=" + Amount.Text + " where ID=" + id, Conn);
+                cmd.ExecuteNonQuery();
+                Conn.Close();
+                lblmsg.BackColor = Color.Blue;
+                lblmsg.ForeColor = Color.White;
+                lblmsg.Text = "Transaction " + id + "        Updated successfully........    ";
+                gvTransactions.EditIndex = -1;
+                loadTransactions();
+            }
         }
 
         protected void gvTransactions_RowCommand(object sender, GridViewCommandEventArgs e)
