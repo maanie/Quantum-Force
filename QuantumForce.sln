@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{19706EC7-A2E5-4335-95F4-9CD647521D14}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumForce.Site", "Web\QuantumForce.Site\QuantumForce.Site.csproj", "{E3DC8659-12A2-4BF5-8BAA-1BAB3B54DE59}"
@@ -12,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumForce.BusinessLayer", "Libraries\QuantumForce.BusinessLayer\QuantumForce.BusinessLayer.csproj", "{6B04561C-C7A1-40C7-9790-49AF64735C53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumForce.Common", "Libraries\QuantumForce.Common\QuantumForce.Common.csproj", "{26A6D0B4-5D14-4151-A22E-B348D63DA015}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5C7E3F61-F5AD-4FC4-8C83-4CC3BFAF3FB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumForceTests", "QuantumForceTests\QuantumForceTests.csproj", "{81154CDA-8DA3-4EC0-8C0B-A6755D1A8829}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +59,12 @@ Global
 		{26A6D0B4-5D14-4151-A22E-B348D63DA015}.Release|Any CPU.Build.0 = Release|Any CPU
 		{26A6D0B4-5D14-4151-A22E-B348D63DA015}.Release|x86.ActiveCfg = Release|x86
 		{26A6D0B4-5D14-4151-A22E-B348D63DA015}.Release|x86.Build.0 = Release|x86
+		{81154CDA-8DA3-4EC0-8C0B-A6755D1A8829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81154CDA-8DA3-4EC0-8C0B-A6755D1A8829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81154CDA-8DA3-4EC0-8C0B-A6755D1A8829}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{81154CDA-8DA3-4EC0-8C0B-A6755D1A8829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81154CDA-8DA3-4EC0-8C0B-A6755D1A8829}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81154CDA-8DA3-4EC0-8C0B-A6755D1A8829}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,5 +74,6 @@ Global
 		{A54E765C-38B0-45EB-9AE2-D77A94BA7B21} = {3C8704E6-F7D5-4884-BCFF-9A71B563B8FA}
 		{6B04561C-C7A1-40C7-9790-49AF64735C53} = {3C8704E6-F7D5-4884-BCFF-9A71B563B8FA}
 		{26A6D0B4-5D14-4151-A22E-B348D63DA015} = {3C8704E6-F7D5-4884-BCFF-9A71B563B8FA}
+		{81154CDA-8DA3-4EC0-8C0B-A6755D1A8829} = {5C7E3F61-F5AD-4FC4-8C83-4CC3BFAF3FB4}
 	EndGlobalSection
 EndGlobal
