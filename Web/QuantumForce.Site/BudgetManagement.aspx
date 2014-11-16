@@ -6,4 +6,7 @@
     <br />
     <asp:GridView ID="gvBudgets" runat="server"  CssClass="table table-hover table-bordered table-responsive table-striped">
     </asp:GridView>
+
+    <br />
+    <asp:Button ID="CreateBudget" runat="server" Text="Create Budget" OnClick="CreateBudget_Click" CssClass="btn btn-default" />
 </asp:Content>

@@ -15,8 +15,6 @@ namespace QuantumForce.Site.Account
     {
         protected void CreateUser_Click(object sender, EventArgs e)
         {
-            SaveUser();
-
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
             IdentityResult result = manager.Create(user, Password.Text);
@@ -26,7 +24,7 @@ namespace QuantumForce.Site.Account
                 //string code = manager.GenerateEmailConfirmationToken(user.Id);
                 //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
                 //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-
+                SaveUser();
                 IdentityHelper.SignIn(manager, user, isPersistent: false);
 
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);

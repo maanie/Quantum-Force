@@ -44,10 +44,10 @@ namespace QuantumForce.Site.Account
                         IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         break;
                     case SignInStatus.LockedOut:
-                        Response.Redirect("/Account/Lockout");
+                        Response.Redirect("/Account/Lockout.aspx");
                         break;
                     case SignInStatus.RequiresVerification:
-                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
+                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn.aspx?ReturnUrl={0}&RememberMe={1}", 
                                                         Request.QueryString["ReturnUrl"],
                                                         RememberMe.Checked),
                                           true);
@@ -69,7 +69,7 @@ namespace QuantumForce.Site.Account
             {
                 Conn.Open();
                 OleDbCommand cmd = new OleDbCommand(
-                            "update tblUser set LastLoginDate = '" + DateTime.Now.ToString() + "'", Conn);
+                            "update tblUser set LastLoginDate = '" + DateTime.Now.ToString() + "' WHERE UserName = '" + Email.Text + "'", Conn);
                 int result = cmd.ExecuteNonQuery();
             }
         }

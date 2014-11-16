@@ -32,10 +32,34 @@ namespace QuantumForce.Site
         {
             using (Conn)
             {
-                int userId;
+                int userId = 0;
                 Conn.Open();
                 OleDbCommand cmd = new OleDbCommand("SELECT UserID FROM tblUser WHERE UserName = '" + User.Identity.Name + "'", Conn);
                 userId = (int)cmd.ExecuteScalar();
+
+                Session["UserId"] = userId;
+
+                if(userId != 0)
+                {
+                    cmd = new OleDbCommand("SELECT UserBudgetID, BudgetName FROM tblUserBudget WHERE UserID = '" + userId + "'", Conn);
+                    OleDbDataAdapter oDA = new OleDbDataAdapter(cmd);
+                    dt = new DataTable();
+                    oDA.Fill(dt);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        gvBudgets.DataSource = dt;
+                        gvBudgets.DataBind();
+                    }
+                }
+            }
+        }
+
+        protected void CreateBudget_Click(object sender, EventArgs e)
+        {
+            if (Session["UserId"] != null)
+            {
+                Response.Redirect("Budget.aspx?UserId=" + Session["UserId"].ToString());
             }
         }
     }

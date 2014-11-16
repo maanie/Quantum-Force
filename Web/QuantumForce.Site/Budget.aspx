@@ -16,7 +16,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-a-expense" placeholder="0.0">
+                    <input type="text" id="DomHomePayments" runat="server" class="form-control cat-a-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -27,7 +27,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-a-expense" placeholder="0.0">
+                    <input type="text" id="DomRates" runat="server" class="form-control cat-a-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -38,7 +38,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-a-expense" placeholder="0.0">
+                    <input type="text" id="DomLevyExp" runat="server" class="form-control cat-a-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -49,7 +49,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-a-expense" placeholder="0.0">
+                    <input type="text" id="DomInsurance" runat="server" class="form-control cat-a-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -60,7 +60,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-a-expense" placeholder="0.0">
+                    <input type="text" id="DomTelephone" runat="server" class="form-control cat-a-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -71,7 +71,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-a-expense" placeholder="0.0">
+                    <input type="text" id="DomTVExp" runat="server" class="form-control cat-a-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -82,7 +82,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-a-expense" placeholder="0.0">
+                    <input type="text" id="DomSchoolExp" runat="server" class="form-control cat-a-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -93,7 +93,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-a-expense" placeholder="0.0">
+                    <input type="text" id="DomLoans" runat="server" class="form-control cat-a-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -104,7 +104,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-a-expense" placeholder="0.0">
+                    <input type="text" id="DomHouseholdExp" runat="server" class="form-control cat-a-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -115,7 +115,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-a-expense" placeholder="0.0">
+                    <input type="text" id="DomEntertainment" runat="server" class="form-control cat-a-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -126,7 +126,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-a-expense" placeholder="0.0">
+                    <input type="text" id="DomOther" runat="server" class="form-control cat-a-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -155,7 +155,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-b-expense" placeholder="0.0">
+                    <input type="text" id="PersLifeAssurance" runat="server" class="form-control cat-b-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -166,7 +166,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-b-expense" placeholder="0.0">
+                    <input type="text" id="PersProvidentFund" runat="server" class="form-control cat-b-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -177,7 +177,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-b-expense" placeholder="0.0">
+                    <input type="text" id="PersMedicalAid" runat="server" class="form-control cat-b-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -188,7 +188,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-b-expense" placeholder="0.0">
+                    <input type="text" id="PersTransport" runat="server" class="form-control cat-b-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -199,7 +199,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-b-expense" placeholder="0.0">
+                    <input type="text" id="PersClothing" runat="server" class="form-control cat-b-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -210,7 +210,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-b-expense" placeholder="0.0">
+                    <input type="text" id="PersOther" runat="server" class="form-control cat-b-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -239,7 +239,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-c-expense" placeholder="0.0">
+                    <input type="text" id="CarMonthlyPayments" runat="server" class="form-control cat-c-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -250,7 +250,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-c-expense" placeholder="0.0">
+                    <input type="text" id="CarInsurance" runat="server" class="form-control cat-c-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -261,7 +261,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-c-expense" placeholder="0.0">
+                    <input type="text" id="CarExpenses" runat="server" class="form-control cat-c-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -272,7 +272,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" class="form-control cat-c-expense" placeholder="0.0">
+                    <input type="text" id="CarPetrol" runat="server" class="form-control cat-c-expense" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -301,7 +301,7 @@
             <div class="col-md-8">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">R</span>
-                    <input type="text" id="income" class="form-control" placeholder="0.0">
+                    <input type="text" id="MonthlyIncome" runat="server" class="form-control" placeholder="0.0">
                 </div>
             </div>
             <br style="clear: both" />
@@ -331,6 +331,20 @@
             <br style="clear: both" />
         </div>
     </div>
+
+    <hr />
+    <br />
+
+    <div class="col-md-2">
+        <input id="BudgetName" class="form-control" placeholder="Budget Name" runat="server" />
+    </div>
+    <div class="col-md-2">
+        <asp:Button ID="SaveBudget" runat="server" Text="Save" CssClass="btn btn-default" OnClick="SaveBudget_Click" />
+    </div>
+
+    <br />
+    <br />
+    <hr />
 
     <script type="text/javascript">
 
@@ -379,7 +393,7 @@
             ApplyCalculations();
         });
 
-        $("#income").change(function () {
+        $("#<%= MonthlyIncome.ClientID %>").change(function () {
 
             ApplyCalculations();
         });
@@ -405,7 +419,7 @@
             if (isNumber(totalExpense)) {
                 $("#total-expense").prop("value", totalExpense);
 
-                var income = $("#income").prop("value");
+                var income = $("#<%= MonthlyIncome.ClientID %>").prop("value");
 
                 if (isNumber(income)) {
                     var remainder = income - totalExpense;
