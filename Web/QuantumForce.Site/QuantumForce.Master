@@ -49,10 +49,10 @@
                         <li><a runat="server" href="~/">Dashboard</a></li>
                         <li><a runat="server" href="BudgetManagement.aspx">Budget</a></li>
                         <li><a runat="server" href="Transactions.aspx">Transactions</a></li>
-                        <li><a runat="server" href="Reports.aspx">Reports</a></li>
-                        <li><a runat="server" href="#">Calender</a></li>
+                        <%--<li><a runat="server" href="Reports.aspx">Reports</a></li>
+                        <li><a runat="server" href="#">Calender</a></li>--%>
                         <li><a runat="server" href="SavingTips.aspx">Saving Tips</a></li>
-                        <li><a runat="server" href="About.aspx">About us</a></li>
+                        <li><a runat="server" href="AboutUs.aspx">About us</a></li>
                     </ul>
                     <div class="navbar-collapse collapse">
                         <asp:LoginView runat="server" ViewStateMode="Disabled">

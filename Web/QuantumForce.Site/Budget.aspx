@@ -335,11 +335,12 @@
     <hr />
     <br />
 
-    <div class="col-md-2">
+    <div class="col-md-4">
         <input id="BudgetName" class="form-control" placeholder="Budget Name" runat="server" />
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
         <asp:Button ID="SaveBudget" runat="server" Text="Save" CssClass="btn btn-default" OnClick="SaveBudget_Click" />
+        <asp:Button ID="Back" runat="server" Text="Back" CssClass="btn btn-default" OnClick="Back_Click" />
     </div>
 
     <br />
@@ -348,7 +349,15 @@
 
     <script type="text/javascript">
 
+        $(document).ready(function () {
+            CalcCatAExense();
+            CalcCatBExense();
+            CalcCatCExense();
+            ApplyCalculations();
+        });
+
         $(".cat-a-expense").change(function () {
+
             var total = 0;
 
             $(".cat-a-expense").each(function () {
@@ -364,6 +373,7 @@
         });
 
         $(".cat-b-expense").change(function () {
+
             var total = 0;
 
             $(".cat-b-expense").each(function () {
@@ -379,6 +389,7 @@
         });
 
         $(".cat-c-expense").change(function () {
+
             var total = 0;
 
             $(".cat-c-expense").each(function () {
@@ -397,6 +408,48 @@
 
             ApplyCalculations();
         });
+
+        function CalcCatAExense() {
+            var total = 0;
+
+            $(".cat-a-expense").each(function () {
+
+                var num = parseFloat(this.value);
+                if (isNumber(num)) {
+                    total += num;
+                }
+            });
+
+            $("#cat-a-subtotal").prop("value", total);
+        }
+
+        function CalcCatBExense() {
+            var total = 0;
+
+            $(".cat-b-expense").each(function () {
+
+                var num = parseFloat(this.value);
+                if (isNumber(num)) {
+                    total += num;
+                }
+            });
+
+            $("#cat-b-subtotal").prop("value", total);
+        }
+
+        function CalcCatCExense() {
+            var total = 0;
+
+            $(".cat-c-expense").each(function () {
+
+                var num = parseFloat(this.value);
+                if (isNumber(num)) {
+                    total += num;
+                }
+            });
+
+            $("#cat-c-subtotal").prop("value", total);
+        }
 
         function ApplyCalculations() {
 

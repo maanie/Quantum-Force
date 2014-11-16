@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuantumForce.Site.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -12,7 +13,6 @@ namespace QuantumForce.Site
     public partial class Budget : System.Web.UI.Page
     {
         string BudgetID;
-        string UserId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,32 +20,146 @@ namespace QuantumForce.Site
             {
                 if (!User.Identity.IsAuthenticated)
                 {
-                    //Response.Redirect("Dashboard.aspx");
+                    Response.Redirect("Dashboard.aspx");
                 }
 
-                BudgetID = Request.QueryString["BudgetID"];
-                Session["BudgetID"] = BudgetID;
-
-                UserId = Request.QueryString["UserId"];
-                Session["UserId"] = UserId;
-
-                if (BudgetID != string.Empty)
+                if (Request.QueryString["BudgetID"] != null)
                 {
+                    BudgetID = Request.QueryString["BudgetID"];
+                    Session["BudgetID"] = BudgetID;
                     FillBudget();
+                }
+                else
+                {
+                    Session["BudgetID"] = null;
                 }
             }
         }
 
         private void FillBudget()
         {
-            //throw new NotImplementedException();
+            string sFilePath = Server.MapPath("QuantumForce.accdb");
+            using (OleDbConnection Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + sFilePath + ";Persist Security Info=False;"))
+            {
+                Conn.Open();
+                OleDbCommand cmd = new OleDbCommand(
+                    "select * from tblBudget where BudgetId = " + Session["BudgetID"].ToString(), Conn);
+
+                OleDbDataAdapter oDA = new OleDbDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                oDA.Fill(dt);
+
+                #region SetTextFields
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        foreach (DataColumn col in dt.Columns)
+                        {
+                            if (col.ColumnName == "DomHomePayments")
+                            {
+                                DomHomePayments.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "DomRates")
+                            {
+                                DomRates.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "DomLevyExp")
+                            {
+                                DomLevyExp.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "DomInsurance")
+                            {
+                                DomInsurance.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "DomTelephone")
+                            {
+                                DomTelephone.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "DomTVExp")
+                            {
+                                DomTVExp.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "DomSchoolExp")
+                            {
+                                DomSchoolExp.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "DomLoans")
+                            {
+                                DomLoans.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "DomHouseholdExp")
+                            {
+                                DomHouseholdExp.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "DomEntertainment")
+                            {
+                                DomEntertainment.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "DomOther")
+                            {
+                                DomOther.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "PersLifeAssurance")
+                            {
+                                PersLifeAssurance.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "PersProvidentFund")
+                            {
+                                PersProvidentFund.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "PersMedicalAid")
+                            {
+                                PersMedicalAid.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "PersTransport")
+                            {
+                                PersTransport.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "PersClothing")
+                            {
+                                PersClothing.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "PersOther")
+                            {
+                                PersOther.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "CarMontlyPayments")
+                            {
+                                CarMonthlyPayments.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "CarInsurance")
+                            {
+                                CarInsurance.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "CarExpenses")
+                            {
+                                CarExpenses.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "CarPetrol")
+                            {
+                                CarPetrol.Value = row[col].ToString();
+                            }
+                            else if (col.ColumnName == "MonthlyIncome")
+                            {
+                                MonthlyIncome.Value = row[col].ToString();
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                cmd.CommandText = ("select BudgetName from tblUserBudget where BudgetID = " + Session["BudgetID"].ToString());
+                BudgetName.Value = cmd.ExecuteScalar().ToString();
+            }
         }
 
         protected void SaveBudget_Click(object sender, EventArgs e)
         {
-            if (Session["UserId"] != null)
+            if (User.Identity.IsAuthenticated)
             {
-                UserId = Session["UserId"].ToString();
+                string sFilePath = Server.MapPath("QuantumForce.accdb");
+                int UserId = HelperMethods.FindUser(User.Identity.Name, sFilePath);
 
                 int intDomHomePayments = 0, intDomRates = 0, intDomLevyExp = 0, intDomInsurance = 0, intDomTelephone = 0, intDomTVExp = 0,
                     intDomSchoolExp = 0, intDomLoans = 0, intDomHouseholdExp = 0, intDomEntertainment = 0, intDomOther = 0, intPersLifeAssurance = 0,
@@ -165,7 +279,6 @@ namespace QuantumForce.Site
                 }
                 #endregion
 
-                string sFilePath = Server.MapPath("QuantumForce.accdb");
                 using (OleDbConnection Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + sFilePath + ";Persist Security Info=False;"))
                 {
                     if (Session["BudgetID"] != null)
@@ -212,6 +325,11 @@ namespace QuantumForce.Site
                     }
                 }
             }
+        }
+
+        protected void Back_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BudgetManagement.aspx");
         }
     }
 }

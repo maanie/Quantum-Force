@@ -45,6 +45,13 @@
                    </div>
                 </td>
             </tr>
-        </table>     
+        </table>
+
+    <style type="text/css">
+        div {
+            text-align:justify;
+        }
+    </style>
+
 </asp:Content>
 

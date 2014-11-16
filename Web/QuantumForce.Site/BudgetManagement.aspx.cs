@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuantumForce.Site.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -12,17 +13,15 @@ namespace QuantumForce.Site
     public partial class BudgetManagement : System.Web.UI.Page
     {
         DataTable dt;
-        OleDbConnection Conn;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string sFilePath = Server.MapPath("QuantumForce.accdb");
-            Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + sFilePath + ";Persist Security Info=False;");
+
 
             if (!IsPostBack)
             {
                 if (!User.Identity.IsAuthenticated)
                 {
-                    //Response.Redirect("Dashboard.aspx");
+                    Response.Redirect("Dashboard.aspx");
                 }
                 LoadBudgets();
             }
@@ -30,18 +29,14 @@ namespace QuantumForce.Site
 
         protected void LoadBudgets()
         {
-            using (Conn)
+            string sFilePath = Server.MapPath("QuantumForce.accdb");
+            using (OleDbConnection Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + sFilePath + ";Persist Security Info=False;"))
             {
-                int userId = 0;
-                Conn.Open();
-                OleDbCommand cmd = new OleDbCommand("SELECT UserID FROM tblUser WHERE UserName = '" + User.Identity.Name + "'", Conn);
-                userId = (int)cmd.ExecuteScalar();
+                int userId = HelperMethods.FindUser(User.Identity.Name, sFilePath);
 
-                Session["UserId"] = userId;
-
-                if(userId != 0)
+                if (userId != 0)
                 {
-                    cmd = new OleDbCommand("SELECT UserBudgetID, BudgetName FROM tblUserBudget WHERE UserID = '" + userId + "'", Conn);
+                    OleDbCommand cmd = new OleDbCommand("SELECT UserBudgetID, BudgetName, BudgetID FROM tblUserBudget WHERE UserID = " + userId, Conn);
                     OleDbDataAdapter oDA = new OleDbDataAdapter(cmd);
                     dt = new DataTable();
                     oDA.Fill(dt);
@@ -57,9 +52,35 @@ namespace QuantumForce.Site
 
         protected void CreateBudget_Click(object sender, EventArgs e)
         {
-            if (Session["UserId"] != null)
+            Response.Redirect("Budget.aspx");
+        }
+
+        protected void editButton_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            Response.Redirect("Budget.aspx?BudgetID=" + button.ToolTip);
+        }
+
+        protected void deleteButton_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+
+            string sFilePath = Server.MapPath("QuantumForce.accdb");
+            using (OleDbConnection Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + sFilePath + ";Persist Security Info=False;"))
             {
-                Response.Redirect("Budget.aspx?UserId=" + Session["UserId"].ToString());
+                Conn.Open();
+                OleDbCommand cmd = new OleDbCommand("delete from tblBudget where BudgetID = " + button.ToolTip, Conn);
+                int result = cmd.ExecuteNonQuery();
+
+                if(result == 1)
+                {
+                    cmd.CommandText = "delete from tblUserBudget where BudgetID = " + button.ToolTip;
+                    result = cmd.ExecuteNonQuery();
+                    if(result == 1)
+                    {
+                        Response.Redirect("BudgetManagement.aspx");
+                    }
+                }
             }
         }
     }
