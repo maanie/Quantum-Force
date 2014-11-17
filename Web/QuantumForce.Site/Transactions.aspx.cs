@@ -17,8 +17,8 @@ namespace QuantumForce.Site
         protected void Page_Load(object sender, EventArgs e)
         {
             // set the monthly income + the amount remaining (sync/get from ruaan's budget table)
-            lblAmountRemaining.Text = "R500";
-            lblMonthlyIncome.Text = "R5000";
+            //lblAmountRemaining.Text = "R500";
+            //lblMonthlyIncome.Text = "R5000";
 
             string sFilePath = Server.MapPath("QuantumForce.accdb");
             Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + sFilePath + ";Persist Security Info=False;");
@@ -126,7 +126,7 @@ namespace QuantumForce.Site
                 TextBox inDescription = (TextBox)gvTransactions.FooterRow.FindControl("inDescription");
                 TextBox inAmount = (TextBox)gvTransactions.FooterRow.FindControl("inAmount");
 
-                Conn.Open();
+                /*Conn.Open();
                 //Get the total amount for this category in the transactions table
                 OleDbCommand cmd1 = new OleDbCommand(
                         "Select SUM(Amount) AS TotalAmount FROM tblTransaction WHERE refCategory = " + inCategory.SelectedValue + "", Conn);
@@ -150,7 +150,7 @@ namespace QuantumForce.Site
                     lblmsg.Text = "You have exceeded you budgeted amount for this Category, please adjust your budget for this category!";
                 }
                 else
-                {
+                {*/
                     Conn.Open();
                     OleDbCommand cmd = new OleDbCommand(
                             "insert into tblTransaction(refCategory, Description, Amount, TransactionDate) values(" + (inCategory.SelectedValue == "" ? "-1" : inCategory.SelectedValue) + ",'" +
@@ -171,7 +171,7 @@ namespace QuantumForce.Site
                         lblmsg.Text = " Error while adding row.....";
                     }
 
-                }
+                //}
 
             }
         }

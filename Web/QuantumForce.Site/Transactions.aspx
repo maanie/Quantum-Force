@@ -2,14 +2,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div style="height: 55px" class=" wrapper">
-        <h3>
-            <label>Monthly Income (After deductions): </label>
-            <asp:Label ID="lblMonthlyIncome" runat="server" Width="100px"></asp:Label></h3>
-        <h3>
-            <label>Amount Remaining: </label>
-            <asp:Label ID="lblAmountRemaining" runat="server" Width="100px"></asp:Label><br />
-            <br />
-        </h3>
+        
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">

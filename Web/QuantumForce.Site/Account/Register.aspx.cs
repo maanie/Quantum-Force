@@ -43,7 +43,7 @@ namespace QuantumForce.Site.Account
             {
                 Conn.Open();
                 OleDbCommand cmd = new OleDbCommand(
-                            "insert into tblUser(UserName, Email, LastLoginDate) values('" + Email.Text + "','" + Email.Text + "','" + DateTime.Now.ToString() + "')", Conn);
+                            "insert into tblUser(UserName, Password, Email, LastLoginDate) values('" + Email.Text + "','" + Password.Text + "','" + Email.Text + "','" + DateTime.Now.ToString() + "')", Conn);
                 int result = cmd.ExecuteNonQuery();
             }
         }
